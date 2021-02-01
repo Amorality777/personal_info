@@ -1,20 +1,24 @@
 from peewee import *
-from datetime import date
 
 db = SqliteDatabase('db.sqlite3')
 
 
-class Person(Model):
+class Gender(Model):
     GENDER_CHOICES = [
         ('m', 'Man'),
         ('w', 'Woman'),
     ]
+    gender = CharField(choices=GENDER_CHOICES)
+
+    class Meta:
+        database = db
+
+
+class Person(Model):
     full_name = TextField()
     birthday = DateField()
-    gender = CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = ForeignKeyField(Gender)
 
     class Meta:
         database = db
         order_by = ['full_name']
-
-

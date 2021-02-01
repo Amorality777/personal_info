@@ -1,6 +1,6 @@
 import datetime
 import time
-from random import choice, randint, shuffle, sample
+from random import choice, randint, sample
 
 from models import Person
 
@@ -24,9 +24,6 @@ def full_name_generator():
         yield full_name
 
 
-print(next(full_name_generator()))
-
-
 def full_name_start_with_f_generator():
     while True:
         full_name = ''
@@ -48,9 +45,9 @@ def birthday_generator():
 
 
 def create_records(count_records, date_generator, gender_list, name_generator):
-    for _ in range(count_records):
+    for i in range(count_records):
         full_name = next(name_generator)
-        birthday = next(date_generator)
+        birthday = datetime.date(2000, 1, 1)
         gender = choice(gender_list)
         Person.create(full_name=full_name, birthday=birthday, gender=gender)
     print(f'{count_records} records  created successfully')
