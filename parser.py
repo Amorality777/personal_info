@@ -1,6 +1,6 @@
 import argparse
 
-from logic import create_db_table, create_record, show_records
+from logic import create_db_table, create_record, show_records, add_million_records, show_selection_results
 
 parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers()
@@ -16,6 +16,12 @@ add_parser.set_defaults(func=create_record)
 
 show_parser = subparsers.add_parser('3', help='show records')
 show_parser.set_defaults(func=show_records)
+
+show_parser = subparsers.add_parser('4', help='add million records')
+show_parser.set_defaults(func=add_million_records)
+
+show_parser = subparsers.add_parser('5', help='selection results')
+show_parser.set_defaults(func=show_selection_results)
 
 if __name__ == '__main__':
     args = parser.parse_args()
